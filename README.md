@@ -4,34 +4,32 @@
 
 > 트핀이가 대신 방송해줘요!
 
-## Install
+## 설치
 
 ```sh
 pip install requests playsound irc
-vim auth.py
 ```
 
-## Usage
+## 설정
+설정하려면 auth.py를 직접 수정해야 해요. 각 변수들은 이 사이트에서 발급받은 걸로 초기화하세요.
+- [twitch_token](https://twitchapps.com/tmi/)
+- [twitch_ClientID](https://dev.twitch.tv/console/apps/create)
+- [pingpong_token](https://builder.pingpong.us/)
+- [pingpong_url](https://builder.pingpong.us/)
+- [kakao_restkey](https://developers.kakao.com/)
+- UserName, channel은 각각 토큰 발급한 봇 계정명, 봇이 있을 채널이에요.
+## 시작
 
 ```sh
 python ./main.py
 ```
 
-## Run tests
-
-```sh
-python ./main.py
-```
-
-## Author
+## 기여자
 
 👤 **_엔돌핀**
 
 * Github: [@endorphin-pk](https://github.com/endorphin-pk)
 
-## Show your support
+## 도움이 되셨나요?
 
-Give a ⭐️ if this project helped you!
-
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
+도움이 되셨다면 이 리포에 ⭐️를 눌러주세요!
