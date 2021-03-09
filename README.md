@@ -1,6 +1,27 @@
-# Welcome to 트핀 👋
+<h1 align="center">Welcome to Tpin 👋</h1>
+<p>
+</p>
 
 > 트핀이가 대신 방송해줘요!
+
+## Install
+
+```sh
+pip install requests playsound irc
+vim auth.py
+```
+
+## Usage
+
+```sh
+python ./main.py
+```
+
+## Run tests
+
+```sh
+python ./main.py
+```
 
 ## Author
 
@@ -11,7 +32,6 @@
 ## Show your support
 
 Give a ⭐️ if this project helped you!
-
 
 ***
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
