@@ -7,7 +7,9 @@
 ## 설치
 
 ```sh
+git clone "https://github.com/endorphin-pk/tpin.git"
 pip install requests playsound irc
+cd tpin
 ```
 
 ## 설정
