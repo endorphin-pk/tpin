@@ -30,4 +30,4 @@ def gettts(text):  # TTS 제작
     f.close()
 
     # 재생
-    os.system("python ./speak.py")
+    os.system("C:\\Users\\_endorphin\\Documents\\vs\\venv\\pythonProject\\Scripts\\python.exe ./speak.py")

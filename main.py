@@ -56,7 +56,7 @@ class TwitchBot(irc.bot.SingleServerIRCBot):
         global speaking
         if speaking:  # 말하고 있으면 정지
             return
-        if e.arguments[0][:1] == "#":  # 주석이면 정지
+        if e.arguments[0][:1] == "#" or e.arguments[0][:1] == "@":  # 주석 또는 멘션이면 정지
             return
         print("->" + e.arguments[0])  # 채팅 받음
 
