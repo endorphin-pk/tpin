@@ -1,6 +1,9 @@
 """
 트핀봇!
 """
+import random
+import time
+
 import irc.bot  # 트위치 채팅
 import requests  # 웹훅
 import auth  # 개인정보들
@@ -54,10 +57,12 @@ class TwitchBot(irc.bot.SingleServerIRCBot):
         :return: 저도 잘 모르니까 무시하세요
         """
         global speaking
+        time.sleep(1)
         if speaking:  # 말하고 있으면 정지
             return
         if e.arguments[0][:1] == "#" or e.arguments[0][:1] == "@":  # 주석 또는 멘션이면 정지
             return
+        speaking = True
         print("->" + e.arguments[0])  # 채팅 받음
 
         def recieve(query):  # 핑퐁빌더
@@ -66,7 +71,7 @@ class TwitchBot(irc.bot.SingleServerIRCBot):
             :return: 요청한 결과
             """
             # 웹훅 준비
-            url = auth.pingpong_url.format(auth.channel)
+            url = auth.pingpong_url.format(auth.channel+str(random.randint(0,25566)))
             head = {"Authorization": auth.pingpong_token, "Content-Type": "application/json"}
             data = '{"request": {"query":"' + query + '"}}'
             data = data.encode("utf-8")
@@ -74,17 +79,42 @@ class TwitchBot(irc.bot.SingleServerIRCBot):
 
             # 텍스트 추출
             tmp = res.json()["response"]["replies"]
+
+            # noinspection PyStatementEffect
+            [
+                {
+                    'text': '아무말에도 곧잘 대답하는 이 봇은 핑퐁 빌더로 만든 봇이에요 😚\n👉 https://pingpong.us'
+                },
+                {
+                    'from':
+                        {
+                            'score': 0.9958863854408264, 'name': 'conversation', 'link': '/bot/6041a285e4b078d873a1a4b0/conversation?scriptId=6041a285e4b078d873a1a519', 'from': '대화 시나리오 / 안녕'
+                        },
+                    'type': 'text',
+                    'text': '아아아아안녕하신지요!'
+                 }
+            ]
+            ret=[]
+            for i in tmp:
+                if(i.get("text") is None):
+                    #사진 등
+                    continue
+                if(i["text"].find("https://pingpong.us") == -1):
+                    #브랜드 메세지 아님
+                    ret.append(i["text"])
+            """
             try:
                 tmp = tmp[len(tmp) - 1]["text"]
             except KeyError:
-                tmp = tmp[len(tmp) - 2]["text"]
-            print("<-" + tmp)  # 추출 완료
-            return tmp
+                tmp = tmp[len(tmp) - 2]["text"]"""
+            for i in ret:
+                print("<-" + i)  # 추출 완료
+            return ret
 
         txt = recieve(e.arguments[0])
-        c.privmsg(self.channel, txt)  # 채팅 보냄
-        speaking = True
-        kakao.gettts(txt)  # 재생
+        for j in txt:
+            c.privmsg(self.channel, j)  # 채팅 보냄
+            kakao.gettts(j)  # 재생
         speaking = False
         return e.arguments[0]
 
